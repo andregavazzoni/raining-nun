@@ -6,32 +6,29 @@ window.addEventListener("load", function () {
                 game.load.image("nun", "images/freira.png")
             },
             create: function () {
+                //World
                 game.physics.startSystem(Phaser.Physics.ARCADE);
                 game.physics.setBoundsToWorld();
-                game.physics.arcade.gravity.y = -100;
-
-                nunGroup = game.add.physicsGroup();
-
+                game.physics.arcade.gravity.y = 100;
 
                 var church = game.add.sprite(0, 0, "church");
+                church.width = game.width;
+                church.height = game.height;
+
+                this.nunGroup = game.add.physicsGroup();
                 priest = game.add.sprite(game.width * 0.5, game.height - 120, "priest");
                 game.physics.enable(priest, Phaser.Physics.ARCADE);
                 priest.body.collideWorldBounds = true;
                 priest.scale.setTo(0.2, 0.2);
                 priest.body.allowGravity = false;
 
-                church.width = game.width;
-                church.height = game.height;
+
 
                 this.timer = game.time.events.loop(1500, this.addNun, this);
 
             },
             update: function () {
                 var keyboard = game.input.keyboard;
-
-                for (var i = 0, len = nunGroup.children.length; i < len; i++) {
-                    nunGroup.children[i].y += 10;
-                }
 
                 if (keyboard.isDown(Phaser.Keyboard.LEFT)) {
                     priest.x -= speed;
@@ -42,20 +39,19 @@ window.addEventListener("load", function () {
                 }
             },
             addNun: function() {
-                var x = game.rnd.between(40, 340);
-                var nun = game.add.sprite(x, 100, 'nun');
-                nunGroup.add(nun);
+                var x = game.rnd.between(0, 340);
+                var nun = game.add.sprite(x, 0, 'nun');
+                this.nunGroup.add(nun);
                 game.physics.arcade.enable(nun);
                 nun.checkWorldBounds = true;
                 nun.outOfBoundsKill = true;
-                nun.body.velocity.y += 10;
-
-                console.log(nun);
+                nun.body.velocity.y = 100;
+                nun.scale.setTo(0.15, 0.15);
             }
         };
 
         var speed = 3;
-        var priest, nun, nunGroup;
+        var priest;
         var MAX_NUN = 6;
         var nunCount = 0;
         var points = 0;
