@@ -15,20 +15,32 @@ window.addEventListener("load", function () {
                 church.width = game.width;
                 church.height = game.height;
 
+                //Nun
                 this.nunGroup = game.add.physicsGroup();
+
+                //Player
                 priest = game.add.sprite(game.width * 0.5, game.height - 120, "priest");
                 game.physics.enable(priest, Phaser.Physics.ARCADE);
                 priest.body.collideWorldBounds = true;
                 priest.scale.setTo(0.2, 0.2);
                 priest.body.allowGravity = false;
 
-
+                //Score
+                this.score = 0;
+                this.labelScore = game.add.text(20, 20, "0",
+                    { font: "30px Arial", fill: "#ffffff" });
 
                 this.timer = game.time.events.loop(1500, this.addNun, this);
 
             },
             update: function () {
                 var keyboard = game.input.keyboard;
+
+                game.physics.arcade.overlap(priest, this.nunGroup, function (priest, nun) {
+                    nun.destroy();
+                    this.score += 1;
+                    this.labelScore.text = this.score;
+                }, null, this);
 
                 if (keyboard.isDown(Phaser.Keyboard.LEFT)) {
                     priest.x -= speed;
