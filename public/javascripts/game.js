@@ -28,7 +28,7 @@ window.addEventListener("load", function () {
                 //Score
                 this.score = 0;
                 this.labelScore = game.add.text(20, 20, "0",
-                    { font: "30px Arial", fill: "#ffffff" });
+                    { font: "30px Arial", fill: "#000000" });
 
                 this.timer = game.time.events.loop(1500, this.addNun, this);
 
@@ -50,6 +50,10 @@ window.addEventListener("load", function () {
                     priest.x += speed;
                 }
             },
+            restart: function (a) {
+                alert("Você fez "+this.score+" pontos");
+                game.state.start(game.state.current)
+            },
             addNun: function() {
                 var x = game.rnd.between(0, 340);
                 var nun = game.add.sprite(x, 0, 'nun');
@@ -59,14 +63,12 @@ window.addEventListener("load", function () {
                 nun.outOfBoundsKill = true;
                 nun.body.velocity.y = 100;
                 nun.scale.setTo(0.15, 0.15);
+                nun.events.onOutOfBounds.add(this.restart, this)
             }
         };
 
         var speed = 3;
         var priest;
-        var MAX_NUN = 6;
-        var nunCount = 0;
-        var points = 0;
         var game = new Phaser.Game(400, 600, Phaser.AUTO, 'gameDiv', states);
     }
 );
