@@ -1,9 +1,9 @@
 window.addEventListener("load", function () {
         var states = {
             preload: function () {
-                game.load.image("priest", "images/padre.png");
+                game.load.image("priest", "images/priest.png");
                 game.load.image("church", "images/church.jpg");
-                game.load.image("nun", "images/freira.png")
+                game.load.image("nun", "images/nun.png")
             },
             create: function () {
                 //World
