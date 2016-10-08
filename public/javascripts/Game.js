@@ -57,7 +57,7 @@ RainingNun.Game.prototype = {
 
     endGame: function () {
         var name = prompt("Informe seu nome");
-        $.ajax({
+        $.post({
             url: "/save-score",
             data: {score: this.score, name: name}
         });
