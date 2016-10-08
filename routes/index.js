@@ -29,6 +29,7 @@ router.post('/save-score', function (req, res, next) {
 router.get('/highscore', function (req, res, next) {
     this.db.collection("highscore")
         .find()
+        .sort({"score": 1})
         .toArray(function (error, scores) {
             if (!error) {
                 console.log(scores);
