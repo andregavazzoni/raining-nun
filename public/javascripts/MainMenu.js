@@ -5,8 +5,6 @@ RainingNun.MainMenu = function () {
 };
 
 RainingNun.MainMenu.prototype = {
-    preload: function () {
-    },
     create: function() {
         var title = this.game.add.text(this.game.width/2, this.game.height/6, "Raining Nun",
             { font: "30px Arial", fill: "#FFFFFF", align: "center"});
@@ -27,6 +25,7 @@ RainingNun.MainMenu.prototype = {
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         this.option = 0;
     },
+
     update: function () {
 
         if (this.cursors.up.justDown) {
@@ -39,7 +38,6 @@ RainingNun.MainMenu.prototype = {
         if (this.cursors.down.justDown) {
             this.option += 1;
 
-            console.log(this.option);
             if (this.option > 1) {
                 this.option = 0;
             }
@@ -54,7 +52,12 @@ RainingNun.MainMenu.prototype = {
         }
 
         if (this.enterKey.justDown) {
-            console.log("Selected: " + this.option);
+            if (this.option == 0) {
+                console.log("Selected: Start game");
+
+            } else if(this.option == 1) {
+                console.log("Selected: Ranking");
+            }
         }
     }
 };
