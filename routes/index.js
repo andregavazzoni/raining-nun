@@ -26,4 +26,18 @@ router.post('/save-score', function (req, res, next) {
     res.json(JSON.stringify({ "success": true }));
 });
 
+router.get('/highscore', function (req, res, next) {
+    var scores = this.db.collection("highscore")
+        .find()
+        .toArray(function (error, scores) {
+            if (!error) {
+                console.log(scores);
+                res.header('Content-Type', 'application/json');
+                res.json(JSON.stringify(scores));
+            } else {
+                res.status(500)
+            }
+        });
+});
+
 module.exports = router;
