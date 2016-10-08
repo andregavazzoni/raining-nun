@@ -55,8 +55,12 @@ RainingNun.Game.prototype = {
         }
     },
 
-    restart: function (a) {
-        alert("Você fez "+this.score+" pontos");
+    endGame: function () {
+        var name = prompt("Informe seu nome");
+        $.ajax({
+            url: "/save-score",
+            data: {score: this.score, name: name}
+        });
         this.game.state.start("MainMenu")
     },
 
@@ -69,6 +73,6 @@ RainingNun.Game.prototype = {
         nun.outOfBoundsKill = true;
         nun.body.velocity.y = 100;
         nun.scale.setTo(0.15, 0.15);
-        nun.events.onOutOfBounds.add(this.restart, this)
+        nun.events.onOutOfBounds.add(this.endGame, this)
     }
 };
