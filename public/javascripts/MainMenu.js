@@ -54,7 +54,7 @@ RainingNun.MainMenu.prototype = {
         if (this.enterKey.justDown) {
             if (this.option == 0) {
                 console.log("Selected: Start game");
-
+                this.game.state.start("Game", true);
             } else if(this.option == 1) {
                 console.log("Selected: Ranking");
             }
