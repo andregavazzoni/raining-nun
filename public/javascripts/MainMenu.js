@@ -57,6 +57,7 @@ RainingNun.MainMenu.prototype = {
                 this.game.state.start("Game", true);
             } else if(this.option == 1) {
                 console.log("Selected: Ranking");
+                this.game.state.start("Highscore", true);
             }
         }
     }

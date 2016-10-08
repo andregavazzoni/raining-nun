@@ -27,13 +27,13 @@ router.post('/save-score', function (req, res, next) {
 });
 
 router.get('/highscore', function (req, res, next) {
-    var scores = this.db.collection("highscore")
+    this.db.collection("highscore")
         .find()
         .toArray(function (error, scores) {
             if (!error) {
                 console.log(scores);
                 res.header('Content-Type', 'application/json');
-                res.json(JSON.stringify(scores));
+                res.json(scores);
             } else {
                 res.status(500)
             }
