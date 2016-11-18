@@ -9,7 +9,12 @@ RainingNun.Highscore.prototype = {
     },
 
     create: function () {
+        var church = this.game.add.sprite(0, 0, "church");
+        church.width = this.game.width;
+        church.height = this.game.height;
+
         var scores = this.game.cache.getJSON('highscore');
+
         var total = scores.length;
         if (total > 10) {
             total = 10;

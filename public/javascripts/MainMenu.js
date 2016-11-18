@@ -6,8 +6,12 @@ RainingNun.MainMenu = function () {
 
 RainingNun.MainMenu.prototype = {
     create: function() {
+        var church = this.game.add.sprite(0, 0, "church");
+        church.width = this.game.width;
+        church.height = this.game.height;
+
         var title = this.game.add.text(this.game.width/2, this.game.height/6, "Raining Nun",
-            { font: "30px Arial", fill: "#FFFFFF", align: "center"});
+            { font: "30px Arial", fill: "#0000FF", align: "center"});
 
         title.anchor.x = Math.round(title.width * 0.5) / title.width;
 
