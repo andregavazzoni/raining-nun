@@ -3,14 +3,18 @@ html
     head
         title= title
         link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='')
     body
         block content
         script(src="javascripts/phaser.min.js")
         script(src="javascripts/jquery.min.js")
-        //script(src="javascripts/game.old.js")
-        script(src="javascripts/Boot.js")
-        script(src="javascripts/Preload.js")
-        script(src="javascripts/MainMenu.js")
-        script(src="javascripts/Game.js")
-        script(src="javascripts/Highscore.js")
-        script(src="javascripts/RainingNun.js")
+        script(src="javascripts/game/Boot.js")
+        script(src="javascripts/game/Preload.js")
+        script(src="javascripts/game/MainMenu.js")
+        script(src="javascripts/game/Game.js")
+        script(src="javascripts/game/Highscore.js")
+        script(src="javascripts/game/RainingNun.js")
+        script(id="__bs_script__").
+            //<![CDATA[
+            document.write("<script async src='http://HOST:3001/browser-sync/browser-sync-client.js?v=2.18.1'><\/script>".replace("HOST", location.hostname));
+            //]]>
