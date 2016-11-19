@@ -38,7 +38,7 @@ gulp.task("sass", function () {
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('./maps'))
-        .pipe(gulp.dest("public/css"))
+        .pipe(gulp.dest("public/stylesheets"))
         .pipe(browserSync.stream());
 });
 
@@ -56,7 +56,7 @@ gulp.task('js', function () {
 });
 
 gulp.task("watch", function () {
-    gulp.watch('web-src/sass/**/*.scss', ['sass']);
+    gulp.watch('web-src/stylesheets/**/*.scss', ['sass']);
     utils.log(utils.colors.green.bold("Watching sass..."));
 
     gulp.watch('web-src/images/**/*.{jpg,png}', ['image-min']);
