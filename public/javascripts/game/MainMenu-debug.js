@@ -20,18 +20,18 @@ RainingNun.MainMenu.prototype = {
 
         this.startGame.anchor.x = Math.round(this.startGame.width * 0.5) / this.startGame.width;
 
-        this.ranking = this.game.add.text(this.game.width/2, this.game.height/2 + 50, "Ranking",
+        /* this.ranking = this.game.add.text(this.game.width/2, this.game.height/2 + 50, "Ranking",
             { font: "30px Arial", fill: "#FFFFFF", align: "center"});
 
         this.ranking.anchor.x = Math.round(this.ranking.width * 0.5) / this.ranking.width;
-
+        */
         this.cursors = this.game.input.keyboard.createCursorKeys();
         this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
         this.option = 0;
     },
 
     update: function () {
-
+        /*
         if (this.cursors.up.justDown) {
             this.option -= 1;
             if (this.option < 0) {
@@ -54,7 +54,7 @@ RainingNun.MainMenu.prototype = {
             this.startGame.fill = "white";
             this.ranking.fill = "yellow";
         }
-
+        */
         if (this.enterKey.justDown) {
             if (this.option == 0) {
                 console.log("Selected: Start game");

@@ -1,0 +1,1 @@
+function highscore(){$.ajax({url:"/highscore"}).done(function(e){var t=$("table"),n=t.find("tr:not(.table-header)");n.remove(),$.each(e,function(e,n){var r="<tr><td>"+n.name+"</td><td>"+n.score+"</td></tr>";t.append(r)})})}$(function(){highscore(),setInterval(highscore,1e4)});
