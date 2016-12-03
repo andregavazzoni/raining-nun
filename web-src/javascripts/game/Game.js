@@ -22,6 +22,9 @@ RainingNun.Game.prototype = {
         //Nun
         this.nunGroup = this.game.add.physicsGroup();
 
+        //Demon
+        this.demonGroup = this.game.add.physicsGroup();
+
         //Player
         this.priest = this.game.add.sprite(this.game.width * 0.5, this.game.height - 120, "priest");
         this.game.physics.enable(this.priest, Phaser.Physics.ARCADE);
@@ -34,7 +37,7 @@ RainingNun.Game.prototype = {
         this.labelScore = this.game.add.text(20, 20, "0",
             { font: "30px Arial", fill: "#000000" });
 
-        this.timer = this.game.time.events.loop(1200, this.addNun, this);
+        this.timer = this.game.time.events.loop(1200, this.addSprite, this);
     },
 
     update: function () {
@@ -47,6 +50,11 @@ RainingNun.Game.prototype = {
 
             this.game.physics.arcade.gravity.y = 100 * this.score;
 
+        }, null, this);
+
+
+        this.game.physics.arcade.overlap(this.priest, this.demonGroup, function (priest, demon) {
+            this.endGame();
         }, null, this);
 
         if (keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -77,5 +85,26 @@ RainingNun.Game.prototype = {
         nun.body.velocity.y = 100;
         nun.scale.setTo(0.15, 0.15);
         nun.events.onOutOfBounds.add(this.endGame, this)
+    },
+
+    addDemon: function() {
+        var x = this.game.rnd.between(0, 220);
+        var demon = this.game.add.sprite(x, -20, 'demon');
+        this.demonGroup.add(demon);
+        this.game.physics.arcade.enable(demon);
+        demon.checkWorldBounds = true;
+        demon.outOfBoundsKill = true;
+        demon.body.velocity.y = 100;
+        demon.scale.setTo(0.04, 0.04);
+    },
+
+    addSprite: function () {
+        var rand = Math.floor((Math.random() * 100) + 1);
+
+        if (rand < 20) {
+            this.addDemon();
+        } else {
+            this.addNun();
+        }
     }
 };

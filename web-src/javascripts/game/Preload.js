@@ -8,7 +8,8 @@ RainingNun.Preload.prototype = {
     preload: function () {
         this.game.load.image("priest", "images/priest.png");
         this.game.load.image("church", "images/church.jpg");
-        this.game.load.image("nun", "images/nun.png")
+        this.game.load.image("nun", "images/nun.png");
+        this.game.load.image("demon", "images/demon.png");
     },
 
     create: function () {
