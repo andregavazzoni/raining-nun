@@ -34,7 +34,7 @@ RainingNun.Game.prototype = {
         this.labelScore = this.game.add.text(20, 20, "0",
             { font: "30px Arial", fill: "#000000" });
 
-        this.timer = this.game.time.events.loop(1500, this.addNun, this);
+        this.timer = this.game.time.events.loop(1200, this.addNun, this);
     },
 
     update: function () {
@@ -44,6 +44,9 @@ RainingNun.Game.prototype = {
             nun.destroy();
             this.score += 1;
             this.labelScore.text = this.score;
+
+            this.game.physics.arcade.gravity.y = 100 * this.score;
+
         }, null, this);
 
         if (keyboard.isDown(Phaser.Keyboard.LEFT)) {
@@ -66,7 +69,7 @@ RainingNun.Game.prototype = {
 
     addNun: function() {
         var x = this.game.rnd.between(0, 220);
-        var nun = this.game.add.sprite(x, 0, 'nun');
+        var nun = this.game.add.sprite(x, -20, 'nun');
         this.nunGroup.add(nun);
         this.game.physics.arcade.enable(nun);
         nun.checkWorldBounds = true;
